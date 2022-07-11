@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace GestorDeEstoque
 {
-    internal class Produto
+    abstract class Produto : IEstoque
     {
+        public string nome;
+        public float preco;
+
+        public void AdicionarEntrada()
+        {
+            
+        }
+
+        public void AdicionarSaida()
+        {
+            
+        }
+
+        public void Exibir()
+        {
+            
+        }
     }
 }
