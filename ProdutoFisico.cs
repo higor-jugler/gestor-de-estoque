@@ -11,12 +11,11 @@ namespace GestorDeEstoque
         public float frete;
         private int estoque;
 
-        ProdutoFisico(string nome, float preco, float frete, int estoque)
+        public ProdutoFisico(string nome, float preco, float frete)
         {
             this.nome = nome;
             this.preco = preco;
-            this.frete = frete;
-            this.estoque = estoque;
+            this.frete = frete;            
         }
 
         public void AdicionarEntrada()

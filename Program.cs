@@ -2,7 +2,9 @@
 {
     class Program
     {
+        static List<IEstoque> produtos = new List<IEstoque>();
         enum Menu { Listar = 1, Adicionar, Remover, Entrada, Saida, Sair }
+        enum MenuProduto { ProdutoFisico = 1, Ebook, Curso }
         static void Main(string[] args)
         {
             bool sairApp = false;
@@ -11,7 +13,7 @@
                 Console.WriteLine("Bem vindo ao sistema Gestor de Estoque");
                 Console.WriteLine("Selecione no menu a opção desejada: \n");
                 Console.WriteLine("1 - Listar\n2 - Adicionar\n3 - Remover\n4 - Entrada\n" +
-                    "5 - Saida\n6 - Sair");
+                    "5 - Saida\n6 - Sair do app Gestor de Estoque");
 
                 Menu menu = (Menu)int.Parse(Console.ReadLine());
 
@@ -20,6 +22,7 @@
                     case Menu.Listar:
                         break;
                     case Menu.Adicionar:
+                        Cadastro();
                         break;
                     case Menu.Remover:
                         break;
@@ -33,5 +36,65 @@
                 }
             }
         }
+        
+        static void Cadastro()
+        {
+            Console.WriteLine("Cadstro de Produto");
+            Console.WriteLine("1-Produto Fisico\n2 - Ebook\n3 - Curso");
+            MenuProduto menuProduto = (MenuProduto)int.Parse(Console.ReadLine());
+            switch(menuProduto)
+            {
+                case MenuProduto.ProdutoFisico:
+                    CadastrarPFisico();
+                    break;
+                case MenuProduto.Ebook:
+                    CadastrarEbook();
+                    break;
+                case MenuProduto.Curso:
+                    CadastrarCurso();
+                    break;
+            }
+        }
+        static void CadastrarPFisico()
+        {
+            Console.WriteLine("Cadastrando produto físico: ");
+            Console.WriteLine("Nome: ");
+            string nome = Console.ReadLine();
+            Console.WriteLine("Preço: ");
+            float preco = float.Parse(Console.ReadLine());
+            Console.WriteLine("Frete: ");
+            float frete = float.Parse(Console.ReadLine());
+
+            ProdutoFisico pf = new ProdutoFisico(nome, preco, frete);
+            produtos.Add(pf);
+        }
+
+        static void CadastrarEbook()
+        {
+            Console.WriteLine("Cadastrar Ebook: ");
+            Console.WriteLine("Nome: ");
+            string nome = Console.ReadLine();
+            Console.WriteLine("Preço: ");
+            float preco = float.Parse(Console.ReadLine());
+            Console.WriteLine("Autor: ");
+            string autor = Console.ReadLine();
+
+            Ebook ebook = new Ebook(nome, preco, autor);
+            produtos.Add(ebook);
+        }
+        static void CadastrarCurso()
+        {
+            Console.WriteLine("Cadastrar Curso: ");
+            Console.WriteLine("Nome: ");
+            string nome = Console.ReadLine();
+            Console.WriteLine("Preço");
+            float preco = float.Parse(Console.ReadLine());
+            Console.WriteLine("Autor: ");
+            string autor = Console.ReadLine();
+
+            Curso curso = new Curso(nome, preco, autor);
+            produtos.Add(curso);
+        }
+
     }
 }
