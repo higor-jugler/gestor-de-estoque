@@ -30,7 +30,11 @@ namespace GestorDeEstoque
 
         public void Exibir()
         {
-
+            Console.WriteLine($"Nome: {nome}");
+            Console.WriteLine($"Autor: {autor}");
+            Console.WriteLine($"R$: {preco}");
+            Console.WriteLine($"Vendas: {vendas}");
+            Console.WriteLine("======================");
         }
     }
 }
