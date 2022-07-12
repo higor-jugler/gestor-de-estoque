@@ -3,12 +3,13 @@
 namespace GestorDeEstoque
 {
     class Program
-    {
+    {        
         static List<IEstoque> produtos = new List<IEstoque>();
         enum Menu { Listar = 1, Adicionar, Remover, Entrada, Saida, Sair }
         enum MenuProduto { ProdutoFisico = 1, Ebook, Curso }
         static void Main(string[] args)
         {
+            Carregar();
             bool sairApp = false;
             while (!sairApp)
             {
@@ -19,9 +20,10 @@ namespace GestorDeEstoque
 
                 Menu menu = (Menu)int.Parse(Console.ReadLine());
 
-                switch(menu)
+                switch (menu)
                 {
                     case Menu.Listar:
+                        Listagem();
                         break;
                     case Menu.Adicionar:
                         Cadastro();
@@ -38,13 +40,12 @@ namespace GestorDeEstoque
                 }
             }
         }
-        
         static void Cadastro()
         {
             Console.WriteLine("Cadstro de Produto");
             Console.WriteLine("1-Produto Fisico\n2 - Ebook\n3 - Curso");
             MenuProduto menuProduto = (MenuProduto)int.Parse(Console.ReadLine());
-            switch(menuProduto)
+            switch (menuProduto)
             {
                 case MenuProduto.ProdutoFisico:
                     CadastrarPFisico();
@@ -71,7 +72,6 @@ namespace GestorDeEstoque
             produtos.Add(pf);
             Salvar();
         }
-
         static void CadastrarEbook()
         {
             Console.WriteLine("Cadastrar Ebook: ");
@@ -108,6 +108,34 @@ namespace GestorDeEstoque
             formatter.Serialize(fileStream, produtos);
 
             fileStream.Close();
+        }
+        static void Carregar()
+        {
+            FileStream fileStream = new FileStream("produtos.dat", FileMode.OpenOrCreate);
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            try
+            {
+                produtos = (List<IEstoque>)formatter.Deserialize(fileStream);
+                if (produtos == null)
+                {
+                    produtos = new List<IEstoque>();
+                }
+            }
+            catch (Exception e)
+            {
+                produtos = new List<IEstoque>();
+            }
+            fileStream.Close();
+        }
+        static void Listagem()
+        {
+            Console.WriteLine("Lista de Produtos: ");
+            foreach(IEstoque produto in produtos)
+            {
+                produto.Exibir();
+            }
+            Console.ReadLine();
         }
     }
 }
