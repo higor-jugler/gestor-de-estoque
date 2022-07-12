@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestorDeEstoque
 {
+    [System.Serializable]
     internal class ProdutoFisico : Produto, IEstoque
     {
         public float frete;

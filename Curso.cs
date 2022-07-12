@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestorDeEstoque
 {
+    [System.Serializable]
     internal class Curso : Produto, IEstoque
     {
         public string autor;

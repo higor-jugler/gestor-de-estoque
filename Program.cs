@@ -1,4 +1,6 @@
-﻿namespace GestorDeEstoque
+﻿using System.Runtime.Serialization.Formatters.Binary;
+
+namespace GestorDeEstoque
 {
     class Program
     {
@@ -67,6 +69,7 @@
 
             ProdutoFisico pf = new ProdutoFisico(nome, preco, frete);
             produtos.Add(pf);
+            Salvar();
         }
 
         static void CadastrarEbook()
@@ -81,6 +84,7 @@
 
             Ebook ebook = new Ebook(nome, preco, autor);
             produtos.Add(ebook);
+            Salvar();
         }
         static void CadastrarCurso()
         {
@@ -94,7 +98,16 @@
 
             Curso curso = new Curso(nome, preco, autor);
             produtos.Add(curso);
+            Salvar();
         }
+        static void Salvar()
+        {
+            FileStream fileStream = new FileStream("produtos.dat", FileMode.OpenOrCreate);
+            BinaryFormatter formatter = new BinaryFormatter();
 
+            formatter.Serialize(fileStream, produtos);
+
+            fileStream.Close();
+        }
     }
 }
