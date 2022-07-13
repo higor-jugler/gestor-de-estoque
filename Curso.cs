@@ -31,7 +31,12 @@ namespace GestorDeEstoque
 
         public void AdicionarSaida()
         {
-            
+            Console.WriteLine($"Retirar vagas do produto {nome}");
+            Console.WriteLine("Qtde a retirar: ");
+            int entrada = int.Parse(Console.ReadLine());
+            vagas -= entrada;
+            Console.WriteLine("Registrado");
+            Console.ReadLine();
         }
 
         public void Exibir()

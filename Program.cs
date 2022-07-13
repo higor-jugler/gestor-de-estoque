@@ -35,6 +35,7 @@ namespace GestorDeEstoque
                         Entrada();
                         break;
                     case Menu.Saida:
+                        Saida();
                         break;
                     case Menu.Sair:
                         sairApp = true;
@@ -161,6 +162,17 @@ namespace GestorDeEstoque
             if (id >= 0 && id < produtos.Count)
             {
                 produtos[id].AdicionarEntrada();
+                Salvar();
+            }
+        }
+        static void Saida()
+        {
+            Listagem();
+            Console.WriteLine("Digite a ID que você deseja inserir: ");
+            int id = int.Parse(Console.ReadLine());
+            if (id >= 0 && id < produtos.Count)
+            {
+                produtos[id].AdicionarSaida();
                 Salvar();
             }
         }
