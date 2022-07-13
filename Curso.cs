@@ -21,7 +21,12 @@ namespace GestorDeEstoque
 
         public void AdicionarEntrada()
         {
-            
+            Console.WriteLine($"Adicionar vagas na entrada do produto {nome}");
+            Console.WriteLine("Qtde a dar entrada: ");
+            int entrada = int.Parse(Console.ReadLine());
+            vagas += entrada;
+            Console.WriteLine("Registrado");
+            Console.ReadLine();
         }
 
         public void AdicionarSaida()

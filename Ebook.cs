@@ -21,7 +21,8 @@ namespace GestorDeEstoque
 
         public void AdicionarEntrada()
         {
-            
+            Console.WriteLine("Produto digital, não à como inserir entrada.");
+            Console.ReadLine();
         }
 
         public void AdicionarSaida()

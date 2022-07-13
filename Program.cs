@@ -32,6 +32,7 @@ namespace GestorDeEstoque
                         Remover();
                         break;
                     case Menu.Entrada:
+                        Entrada();
                         break;
                     case Menu.Saida:
                         break;
@@ -149,6 +150,17 @@ namespace GestorDeEstoque
             if (id >= 0 && id < produtos.Count)
             {
                 produtos.RemoveAt(id);
+                Salvar();
+            }
+        }
+        static void Entrada()
+        {
+            Listagem();
+            Console.WriteLine("Digite a ID que você deseja inserir: ");
+            int id = int.Parse(Console.ReadLine());
+            if (id >= 0 && id < produtos.Count)
+            {
+                produtos[id].AdicionarEntrada();
                 Salvar();
             }
         }
